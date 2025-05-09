@@ -4,5 +4,4 @@
   "installCommand": "pnpm install",
   "framework": "astro",
   "outputDirectory": "dist",
-  "rootDirectory": "."
 } 
