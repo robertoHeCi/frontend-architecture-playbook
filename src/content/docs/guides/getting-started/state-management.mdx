@@ -1,0 +1,208 @@
+---
+title: State Management
+description: Different approaches to handle state in frontend applications
+---
+
+## State Management in Frontend - WIP
+
+State management is one of the most important aspects of frontend development. Good state management is crucial for creating maintainable and scalable applications.
+
+### Types of State
+
+1. **Local State**
+   - State that only affects one component
+   - Managed with `useState` and `useReducer`
+
+2. **Global State**
+   - State shared between multiple components
+   - Solutions like Redux, Zustand, Jotai
+
+3. **Server State**
+   - Data coming from APIs
+   - Managed with React Query, SWR
+
+### Local State
+
+#### useState
+
+```tsx
+function Counter() {
+  const [count, setCount] = useState(0);
+  
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+#### useReducer
+
+```tsx
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+  
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+    </div>
+  );
+}
+```
+
+### Global State
+
+#### Redux
+
+```tsx
+// store.js
+const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+    user: userReducer
+  }
+});
+
+// counterSlice.js
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: 0,
+  reducers: {
+    increment: state => state + 1,
+    decrement: state => state - 1
+  }
+});
+
+// Counter.jsx
+function Counter() {
+  const count = useSelector(state => state.counter);
+  const dispatch = useDispatch();
+  
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => dispatch(increment())}>+</button>
+      <button onClick={() => dispatch(decrement())}>-</button>
+    </div>
+  );
+}
+```
+
+#### Zustand
+
+```tsx
+// store.js
+const useStore = create((set) => ({
+  count: 0,
+  increment: () => set(state => ({ count: state.count + 1 })),
+  decrement: () => set(state => ({ count: state.count - 1 }))
+}));
+
+// Counter.jsx
+function Counter() {
+  const { count, increment, decrement } = useStore();
+  
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>+</button>
+      <button onClick={decrement}>-</button>
+    </div>
+  );
+}
+```
+
+### Server State
+
+#### React Query
+
+```tsx
+function UserProfile() {
+  const { data, isLoading, error } = useQuery('user', fetchUser);
+  
+  if (isLoading) return <Spinner />;
+  if (error) return <Error message={error.message} />;
+  
+  return (
+    <div>
+      <h1>{data.name}</h1>
+      <p>{data.email}</p>
+    </div>
+  );
+}
+```
+
+#### SWR
+
+```tsx
+function UserProfile() {
+  const { data, error } = useSWR('/api/user', fetcher);
+  
+  if (error) return <Error />;
+  if (!data) return <Spinner />;
+  
+  return (
+    <div>
+      <h1>{data.name}</h1>
+      <p>{data.email}</p>
+    </div>
+  );
+}
+```
+
+## When to Use Each Approach
+
+### Local State (useState/useReducer)
+- ✅ Simple component state
+- ✅ UI logic (modals, forms)
+- ✅ Animations and transitions
+
+### Global State (Redux/Zustand)
+- ✅ State shared between components
+- ✅ Authentication state
+- ✅ User preferences
+- ✅ Shopping cart
+
+### Server State (React Query/SWR)
+- ✅ API data
+- ✅ Cache and revalidation
+- ✅ Data synchronization
+- ✅ Optimistic updates
+
+## Best Practices
+
+1. **Minimize Global State**
+   - Use local state when possible
+   - Split global state into slices
+
+2. **Data Normalization**
+   - Keep a flat structure
+   - Avoid data duplication
+
+3. **Immutability**
+   - Don't mutate state directly
+   - Use spread operator or Immer
+
+4. **Selectors**
+   - Use selectors to access state
+   - Memoize complex selectors
+
+5. **Middleware**
+   - Logging
+   - Persistence
+   - Validation

@@ -1,0 +1,48 @@
+---
+title: Layered Architecture
+description: Code organization in layers for frontend applications
+---
+
+# Layered Architecture - WIP
+
+Layered architecture is a design pattern that organizes code into well-defined layers, each with a specific responsibility.
+
+## Main Layers
+
+1. **Presentation (UI)**
+   - React components
+   - UI hooks
+   - Styles and layouts
+
+2. **Business Logic**
+   - Use cases
+   - Business rules
+   - Data transformation
+
+3. **Data**
+   - API services
+   - Repositories
+   - State management
+
+## Directory Structure
+
+```
+src/
+├── app/                 # App shell (router, providers)
+├── features/           # Feature-specific logic
+│   ├── cart/          # Shopping cart
+│   └── product/       # Product catalog
+├── entities/          # Entities and services
+│   └── product/       # Product service
+└── shared/            # Shared components and utilities
+```
+
+## Example: Mini Commerce
+
+In the following sections, we will implement a practical example of an online store using layered architecture.
+
+### Next Steps
+
+- [Project Structure](/guides/examples/mini-commerce/structure)
+- [Feature Implementation](/guides/examples/mini-commerce/features)
+- [State Management](/guides/examples/mini-commerce/state) 
