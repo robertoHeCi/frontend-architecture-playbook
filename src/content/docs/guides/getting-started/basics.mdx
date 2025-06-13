@@ -1,0 +1,123 @@
+---
+title: Basic Concepts
+description: Fundamental principles of frontend architecture
+---
+
+## SOLID Principles in Frontend
+
+SOLID principles are fundamental for creating maintainable and scalable code:
+
+### 1. Single Responsibility Principle (SRP)
+- Each component or module should have only one reason to change
+- Example: Separating business logic from presentation
+
+```tsx
+// ❌ Bad: Component with multiple responsibilities
+function UserProfile({ user }) {
+  const [data, setData] = useState(null);
+  
+  useEffect(() => {
+    fetchUserData(user.id);
+  }, [user.id]);
+  
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
+      <button onClick={() => updateUser(user.id)}>Update</button>
+    </div>
+  );
+}
+
+// ✅ Good: Separation of responsibilities
+function UserProfile({ user }) {
+  const { data, updateUser } = useUserData(user.id);
+  
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
+      <button onClick={() => updateUser(user.id)}>Update</button>
+    </div>
+  );
+}
+```
+
+### 2. Open/Closed Principle (OCP)
+- Components should be open for extension but closed for modification
+- Example: Using composition instead of inheritance
+
+```tsx
+// ❌ Bad: Modifying existing component
+function Button({ text, onClick }) {
+  return <button onClick={onClick}>{text}</button>;
+}
+
+// ✅ Good: Extending functionality
+function PrimaryButton({ text, onClick }) {
+  return <Button text={text} onClick={onClick} className="primary" />;
+}
+```
+
+### 3. Liskov Substitution Principle (LSP)
+- Derived components should be able to substitute their base components
+- Example: Maintaining consistent contracts
+
+```tsx
+// ❌ Bad: Breaking the base component contract
+function SpecialButton({ text, onClick }) {
+  if (!text) return null; // Breaks Button contract
+  return <Button text={text} onClick={onClick} />;
+}
+
+// ✅ Good: Maintaining the contract
+function SpecialButton({ text, onClick }) {
+  return <Button text={text || 'Default'} onClick={onClick} />;
+}
+```
+
+### 4. Interface Segregation Principle (ISP)
+- Components should not depend on interfaces they don't use
+- Example: Specific props for each use case
+
+```tsx
+// ❌ Bad: Too large interface
+interface UserProps {
+  name: string;
+  email: string;
+  address: string;
+  phone: string;
+  // ... many more props
+}
+
+// ✅ Good: Specific interfaces
+interface UserBasicInfo {
+  name: string;
+  email: string;
+}
+
+interface UserContactInfo {
+  phone: string;
+  address: string;
+}
+```
+
+### 5. Dependency Inversion Principle (DIP)
+- Depend on abstractions, not concrete implementations
+- Example: Dependency injection
+
+```tsx
+// ❌ Bad: Direct dependency
+function UserService() {
+  return {
+    getUsers: () => fetch('/api/users'),
+  };
+}
+
+// ✅ Good: Inverted dependency
+function UserService(apiClient) {
+  return {
+    getUsers: () => apiClient.get('/users'),
+  };
+}
+```

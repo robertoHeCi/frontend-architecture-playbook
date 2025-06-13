@@ -1,36 +1,65 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash
-hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
-  actions:
-    - text: Example Guide
-      link: /guides/example/
-      icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
-      variant: minimal
+title: Frontend Architecture Playbook
+description: A comprehensive guide to frontend architecture patterns and best practices
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkCard } from "@astrojs/starlight/components";
 
-## Next steps
+Welcome to the Frontend Architecture Playbook! This repository serves as a comprehensive resource for understanding and implementing modern frontend architecture patterns and best practices.
 
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+## What is this Playbook?
+
+This playbook is designed to help developers:
+
+- 🎓 **Learn** fundamental concepts of frontend architecture
+- 🏗️ **Understand** different architectural patterns and approaches
+- 🛠️ **Implement** best practices in real-world applications
+- 📚 **Reference** common patterns and solutions
+- 🚀 **Improve** their frontend development skills
+
+## Repository Structure
+
+<CardGrid>
+  <LinkCard title='Getting Started' icon='book' href='/guides/getting-started/'>
+    Start your journey with fundamental concepts and basic principles.
+  </LinkCard>
+  {/* <LinkCard
+    title='Architecture'
+    icon='building'
+    href='/guides/architecture/layered/'
+  >
+    Explore different architectural approaches and patterns.
+  </LinkCard> */}
+  {/* <LinkCard title='Examples' icon='code' href='/guides/examples/mini-commerce/'>
+    See practical examples with the Mini Commerce project.
+  </LinkCard>
+  <LinkCard title='Reference' icon='list' href='/reference/patterns/'>
+    Quick access to design patterns and best practices.
+  </LinkCard>
+  <LinkCard title='Resources' icon='lightbulb' href='/resources/books/'>
+    Curated collection of learning resources.
+  </LinkCard> */}
 </CardGrid>
+
+## How to Use This Playbook
+
+1. **Start with the Basics**: Begin with the Getting Started guide to understand fundamental concepts
+2. **Explore Architecture**: Learn about different architectural patterns and approaches
+3. **Study Examples**: See how these concepts are applied in real-world scenarios
+4. **Reference Patterns**: Use the reference section for quick access to common patterns
+5. **Deepen Knowledge**: Explore additional resources to expand your understanding
+
+## Contributing
+
+This playbook is open to contributions! If you'd like to:
+
+- 🐛 Report issues
+- 💡 Suggest improvements
+- 📝 Add new content
+- 🔧 Fix bugs
+
+Please check our [Contributing Guide](/contributing) for more information.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](/license) file for details.

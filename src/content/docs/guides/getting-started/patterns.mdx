@@ -1,0 +1,209 @@
+---
+title: Design Patterns
+description: Common patterns in modern frontend development
+---
+
+## Design Patterns in Frontend
+
+Design patterns are proven solutions for common problems in software development. In frontend, these patterns help us create more maintainable and scalable code.
+
+### 1. Container/Presentational Pattern
+
+Separates business logic from presentation.
+
+```tsx
+// Presentational Component
+function UserList({ users, onUserClick }) {
+  return (
+    <ul>
+      {users.map(user => (
+        <li key={user.id} onClick={() => onUserClick(user)}>
+          {user.name}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// Container Component
+function UserListContainer() {
+  const [users, setUsers] = useState([]);
+  
+  useEffect(() => {
+    fetchUsers().then(setUsers);
+  }, []);
+  
+  const handleUserClick = (user) => {
+    // Business logic
+  };
+  
+  return <UserList users={users} onUserClick={handleUserClick} />;
+}
+```
+
+#### Advantages
+- ✅ Clear separation of concerns
+- ✅ Easier to test components
+- ✅ Better component reuse
+- ✅ Isolated business logic
+
+#### When to Use
+- When you need to separate logic from presentation
+- To improve component reuse
+- When you want to facilitate testing
+
+### 2. Higher-Order Components (HOC)
+
+Adds functionality to existing components.
+
+```tsx
+// HOC to add authentication
+function withAuth(WrappedComponent) {
+  return function WithAuthComponent(props) {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    
+    useEffect(() => {
+      checkAuth().then(setIsAuthenticated);
+    }, []);
+    
+    if (!isAuthenticated) {
+      return <LoginPage />;
+    }
+    
+    return <WrappedComponent {...props} />;
+  };
+}
+
+// Usage
+const ProtectedProfile = withAuth(UserProfile);
+```
+
+#### Advantages
+- ✅ Logic reuse
+- ✅ Separation of concerns
+- ✅ Easy to implement
+
+#### When to Use
+- To add cross-cutting functionality
+- When you need to share logic between components
+- For handling authentication, logging, etc.
+
+### 3. Render Props
+
+Shares code between components in a flexible way.
+
+```tsx
+// Component with render prop
+function DataFetcher({ url, render }) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        setData(data);
+        setLoading(false);
+      });
+  }, [url]);
+  
+  return render({ data, loading });
+}
+
+// Usage
+function UserProfile() {
+  return (
+    <DataFetcher
+      url="/api/user"
+      render={({ data, loading }) => {
+        if (loading) return <Spinner />;
+        return <UserInfo user={data} />;
+      }}
+    />
+  );
+}
+```
+
+#### Advantages
+- ✅ Maximum flexibility
+- ✅ Share state between components
+- ✅ Better than HOCs in some cases
+
+#### When to Use
+- When you need maximum flexibility
+- To share state between components
+- When HOCs are not sufficient
+
+### 4. Custom Hooks
+
+Encapsulates reusable logic.
+
+```tsx
+// Custom hook for form handling
+function useForm(initialValues) {
+  const [values, setValues] = useState(initialValues);
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  
+  const handleSubmit = (callback) => (e) => {
+    e.preventDefault();
+    callback(values);
+  };
+  
+  return {
+    values,
+    handleChange,
+    handleSubmit
+  };
+}
+
+// Usage
+function LoginForm() {
+  const { values, handleChange, handleSubmit } = useForm({
+    email: '',
+    password: ''
+  });
+  
+  return (
+    <form onSubmit={handleSubmit(handleLogin)}>
+      <input
+        name="email"
+        value={values.email}
+        onChange={handleChange}
+      />
+      <input
+        name="password"
+        type="password"
+        value={values.password}
+        onChange={handleChange}
+      />
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+```
+
+#### Advantages
+- ✅ Better composition than HOCs
+- ✅ Easier to test
+- ✅ Better logic reuse
+
+#### When to Use
+- To encapsulate reusable logic
+- When you need to share state between components
+- To handle side effects
+
+## Pattern Comparison
+
+| Pattern | Advantages | Disadvantages | Use Case |
+|--------|----------|-------------|-------------|
+| Container/Presentational | Easy to understand, good separation | More files | Logic and UI separation |
+| HOC | Logic reuse | Prop drilling, wrapper hell | Cross-cutting concerns |
+| Render Props | Flexible, shares state | Verbose syntax | Complex logic sharing |
+| Custom Hooks | Better composition, easy to test | Requires React 16.8+ | Reusable logic |
