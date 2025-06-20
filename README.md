@@ -20,14 +20,21 @@ Inside of your Astro + Starlight project, you'll see the following folders and f
 ```
 .
 ├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   ├── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+src/
+├── assets/
+│   ├── logo.webp
+├── content/
+│   └── docs/
+│       ├── index.mdx                    # Main landing page
+│       ├── contributing.mdx             # Contributing guide
+│       └── guides/
+│           ├── getting-started/         # Basic concepts
+│           ├── principles/              # Design principles
+│           ├── architecture/            # Architecture patterns
+
+├── styles/
+│   └── global.css
+└── content.config.ts
 ```
 
 Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
