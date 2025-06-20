@@ -1,0 +1,47 @@
+---
+title: Architecture Overview
+description: Overview of frontend architectural patterns and approaches
+---
+import { Badge } from '@astrojs/starlight/components';
+
+# Frontend Architecture Overview - <Badge text="WIP" variant="caution" />
+
+
+This section covers different architectural approaches and patterns for building scalable, maintainable frontend applications.
+
+## Architectural Patterns
+
+### [Layered Architecture](/guides/architecture/layered/)
+Organize your code into well-defined layers with clear separation of concerns. Each layer has a specific responsibility, making your application easier to understand, test, and maintain.
+
+**Best for:** Medium to large applications that need clear separation between UI, business logic, and data access.
+
+### [Clean Architecture](/guides/architecture/clean/)
+Build applications with dependency inversion, where business rules are independent of frameworks, databases, and external agencies. The most flexible and testable architecture pattern.
+
+**Best for:** Complex applications that need to be framework-agnostic and highly testable.
+
+{/* ### [Feature-Based Architecture](/guides/architecture/feature-based/)
+Organize code by features rather than technical concerns. Each feature contains all the components, services, and utilities it needs to function.
+
+**Best for:** Large applications with distinct, independent features that can be developed and maintained separately. */}
+
+## Choosing the Right Architecture
+
+When selecting an architecture pattern, consider these factors:
+
+- **Team Size:** Larger teams benefit from clear boundaries and separation of concerns
+- **Application Complexity:** More complex applications need more structured approaches
+- **Scalability Requirements:** Consider future growth and maintenance needs
+- **Development Speed:** Some patterns require more upfront planning but pay off in the long run
+- **Team Experience:** Choose patterns your team can understand and maintain
+
+## Common Principles
+
+Regardless of the specific pattern you choose, these principles apply to all good frontend architecture:
+
+- **Separation of Concerns:** Each module should have a single, well-defined responsibility
+- **Dependency Inversion:** High-level modules should not depend on low-level modules
+- **Single Responsibility:** Each class or function should have one reason to change
+- **Open/Closed Principle:** Open for extension, closed for modification
+- **Testability:** Architecture should make testing easy and comprehensive

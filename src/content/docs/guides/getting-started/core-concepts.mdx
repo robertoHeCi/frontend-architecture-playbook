@@ -1,0 +1,54 @@
+---
+title: Core Concepts
+description: Fundamental concepts and terminology in frontend architecture
+---
+import { Badge } from '@astrojs/starlight/components';
+
+# Core Concepts in Frontend Architecture - <Badge text="WIP" variant="caution" />
+
+Understanding the fundamental concepts is crucial before diving into specific architectural patterns. This guide covers the essential principles that form the foundation of good frontend architecture.
+
+## What is Frontend Architecture?
+
+Frontend architecture is the structural design and organization of frontend code that determines how components interact, how data flows, and how the application scales. It's about making intentional decisions about code organization, not just writing working code.
+
+## Key Concepts
+
+### 1. Separation of Concerns
+
+**Definition**: Dividing your application into distinct sections, each handling a specific aspect of functionality.
+
+
+### 2. Data Flow
+
+**Definition**: How data moves through your application from one component to another.
+
+### 3. Component Composition
+
+**Definition**: Building complex components by combining simpler ones.
+
+### 4. Abstraction
+
+**Definition**: Hiding complex implementation details behind simple interfaces.
+
+
+## Architecture vs. Implementation
+
+**Architecture** is about structure and organization - the "what" and "why" of your decisions.
+
+**Implementation** is about the specific code - the "how" of making it work.
+
+## Common Anti-patterns
+
+### 1. God Components
+Components that do too much and know too much about the application.
+
+
+### 2. Prop Drilling
+Passing props through multiple levels of components that don't need them.
+
+### 3. Tight Coupling
+Components that are too dependent on each other, making changes difficult.
+
+### 4. Mixed Responsibilities
+Components that handle both UI and business logic.
