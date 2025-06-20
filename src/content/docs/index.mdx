@@ -1,11 +1,28 @@
 ---
 title: Frontend Architecture Playbook
 description: A comprehensive guide to frontend architecture patterns and best practices
+hero:
+  tagline: A comprehensive guide to frontend architecture patterns and best practices
+  image:
+    file: ../../assets/logo.webp
+  actions:
+    - text: Get Started
+      link: /guides/getting-started/
+      icon: right-arrow
+      variant: primary
+    - text: View in GitHub
+      link: https://github.com/robertoHeCi/frontend-architecture-playbook
+      icon: external
+      variant: secondary
+
+template: splash
 ---
 
 import { Card, CardGrid, LinkCard } from "@astrojs/starlight/components";
 
-Welcome to the Frontend Architecture Playbook! This repository serves as a comprehensive resource for understanding and implementing modern frontend architecture patterns and best practices.
+# Welcome to the Frontend Architecture Playbook! 🚀
+
+This repository serves as a comprehensive resource for understanding and implementing modern frontend architecture patterns and best practices.
 
 ## What is this Playbook?
 
@@ -20,25 +37,30 @@ This playbook is designed to help developers:
 ## Repository Structure
 
 <CardGrid>
-  <LinkCard title='Getting Started' icon='book' href='/guides/getting-started/'>
-    Start your journey with fundamental concepts and basic principles.
-  </LinkCard>
-  {/* <LinkCard
-    title='Architecture'
-    icon='building'
-    href='/guides/architecture/layered/'
+  <a
+    className='text-black dark:text-white hover:text-primary-500 dark:hover:text-accent-500'
+    href='/guides/getting-started/'
   >
-    Explore different architectural approaches and patterns.
-  </LinkCard> */}
-  {/* <LinkCard title='Examples' icon='code' href='/guides/examples/mini-commerce/'>
-    See practical examples with the Mini Commerce project.
-  </LinkCard>
-  <LinkCard title='Reference' icon='list' href='/reference/patterns/'>
-    Quick access to design patterns and best practices.
-  </LinkCard>
-  <LinkCard title='Resources' icon='lightbulb' href='/resources/books/'>
-    Curated collection of learning resources.
-  </LinkCard> */}
+    <Card title='Getting Started' icon='rocket'>
+      Start your journey with fundamental concepts and basic principles.
+    </Card>
+  </a>
+  <a
+    className='text-black dark:text-white hover:text-primary-500 dark:hover:text-accent-500'
+    href='/guides/architecture/'
+  >
+    <Card title='Architecture' icon='seti:svg' color='blue'>
+      Explore different architectural approaches and patterns.
+    </Card>
+  </a>
+  <a
+    className='text-black dark:text-white hover:text-primary-500 dark:hover:text-accent-500'
+    href='/guides/principles/'
+  >
+    <Card title='Principles' icon='seti:notebook'>
+      Learn about the principles of frontend architecture.
+    </Card>
+  </a>
 </CardGrid>
 
 ## How to Use This Playbook
